@@ -41,7 +41,7 @@ ip6prefixlen.datatype = "max(128)"
 ip6gw = section:taboption("general", Value, "ip6gw", translate("IPv6 gateway"))
 ip6gw.datatype = "ip6addr"
 
-section:taboption("general", Flag, "forwarding", translate("Forwarding"), translate("Enable packet forwarding through n2n community."))
+section:taboption("advanced", Flag, "forwarding", translate("Forwarding"), translate("Enable packet forwarding through n2n community."))
 
 mac = section:taboption("advanced", Value, "mac", translate("Override MAC address"))
 mac.datatype = "macaddr"
