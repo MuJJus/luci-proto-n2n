@@ -43,7 +43,7 @@ ip6gw.datatype = "ip6addr"
 
 section:taboption("general", Flag, "forwarding", translate("Forwarding"), translate("Enable packet forwarding through n2n community."))
 
-mac = section:taboption("advanced", Value, "mac", translate("Override MAC"))
+mac = section:taboption("advanced", Value, "mac", translate("Override MAC address"))
 mac.datatype = "macaddr"
 
 mtu = section:taboption("advanced", Value, "mtu", translate("Override MTU"))
