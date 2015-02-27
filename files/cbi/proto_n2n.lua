@@ -1,4 +1,5 @@
 local map, section, net = ...
+local ifc = net:get_interface()
 
 server = section:taboption("general", Value, "server", translate("Supernode server"))
 server.datatype = "host"
@@ -41,10 +42,10 @@ ip6prefixlen.datatype = "max(128)"
 ip6gw = section:taboption("general", Value, "ip6gw", translate("IPv6 gateway"))
 ip6gw.datatype = "ip6addr"
 
-section:taboption("advanced", Flag, "forwarding", translate("Forwarding"), translate("Enable packet forwarding through n2n community."))
+forwarding = section:taboption("advanced", Flag, "forwarding", translate("Forwarding"), translate("Enable packet forwarding through n2n community."))
+forwarding.default = forwarding.enabled
 
-mac = section:taboption("advanced", Value, "mac", translate("Override MAC address"))
-mac.datatype = "macaddr"
+luci.tools.proto.opt_macaddr(section, ifc, translate("Override MAC address"))
 
 mtu = section:taboption("advanced", Value, "mtu", translate("Override MTU"))
 mtu.placeholder = "1400"
