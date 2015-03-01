@@ -42,8 +42,9 @@ ip6prefixlen.datatype = "max(128)"
 ip6gw = section:taboption("general", Value, "ip6gw", translate("IPv6 gateway"))
 ip6gw.datatype = "ip6addr"
 
-forwarding = section:taboption("advanced", Flag, "forwarding", translate("Forwarding"), translate("Enable packet forwarding through n2n community."))
-forwarding.default = forwarding.enabled
+section:taboption("advanced", Flag, "forwarding", translate("Forwarding"), translate("Enable packet forwarding through n2n community."))
+
+section:taboption("advanced", Flag, "dynamic", translate("Periodically resolve supernode IP"), translate("When supernodes are running on dynamic IPs."))
 
 luci.tools.proto.opt_macaddr(section, ifc, translate("Override MAC address"))
 
