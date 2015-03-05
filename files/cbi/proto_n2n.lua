@@ -21,13 +21,13 @@ mode:value("dhcp", "DHCP")
 mode.default = "static"
 
 ipaddr = section:taboption("general", Value, "ipaddr", translate("IPv4 address"))
+ipaddr:depends("mode", "static")
 ipaddr.datatype = "ip4addr"
-ipaddr.rmempty = false
 
 netmask = section:taboption("general", Value, "netmask", translate("IPv4 netmask"))
+netmask:depends("mode", "static")
 netmask.datatype = "ip4addr"
 netmask.placeholder = "255.255.255.0"
-netmask.rmempty = false
 
 gateway = section:taboption("general", Value, "gateway", translate("IPv4 gateway"))
 gateway.datatype = "ip4addr"
@@ -46,8 +46,18 @@ section:taboption("advanced", Flag, "forwarding", translate("Forwarding"), trans
 
 section:taboption("advanced", Flag, "dynamic", translate("Periodically resolve supernode IP"), translate("When supernodes are running on dynamic IPs."))
 
+section:taboption("advanced", Flag, "multicast", translate("Accept multicast"), translate("Accept multicast MAC addresses."))
+
 luci.tools.proto.opt_macaddr(section, ifc, translate("Override MAC address"))
 
 mtu = section:taboption("advanced", Value, "mtu", translate("Override MTU"))
 mtu.placeholder = "1400"
 mtu.datatype = "max(9200)"
+
+localport = section:taboption("advanced", Value, "localport", translate("Local port"))
+localport.datatype = "port"
+
+mgmtport = section:taboption("advanced", Value, "mgmtport", translate("Management port"))
+mgmtport.datatype = "port"
+
+section:taboption("advanced", Flag, "verbose", translate("Verbose"), translate("Make more verbose in syslog."))
