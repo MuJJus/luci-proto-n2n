@@ -30,6 +30,7 @@ netmask.datatype = "ip4addr"
 netmask.placeholder = "255.255.255.0"
 
 gateway = section:taboption("general", Value, "gateway", translate("IPv4 gateway"))
+gateway:depends("mode", "static")
 gateway.datatype = "ip4addr"
 
 ip6addr = section:taboption("general", Value, "ip6addr", translate("IPv6 address"))
@@ -54,7 +55,7 @@ mtu = section:taboption("advanced", Value, "mtu", translate("Override MTU"))
 mtu.placeholder = "1400"
 mtu.datatype = "max(9200)"
 
-localport = section:taboption("advanced", Value, "localport", translate("Local port"))
+localport = section:taboption("advanced", Value, "localport", translate("Bind local port"))
 localport.datatype = "port"
 
 mgmtport = section:taboption("advanced", Value, "mgmtport", translate("Management port"))
