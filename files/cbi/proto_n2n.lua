@@ -33,15 +33,17 @@ gateway = section:taboption("general", Value, "gateway", translate("IPv4 gateway
 gateway:depends("mode", "static")
 gateway.datatype = "ip4addr"
 
-ip6addr = section:taboption("general", Value, "ip6addr", translate("IPv6 address"))
-ip6addr.datatype = "ip6addr"
-
-ip6prefixlen = section:taboption("general", Value, "ip6prefixlen", translate("IPv6 prefix length"))
-ip6prefixlen.placeholder = "64"
-ip6prefixlen.datatype = "max(128)"
-
-ip6gw = section:taboption("general", Value, "ip6gw", translate("IPv6 gateway"))
-ip6gw.datatype = "ip6addr"
+if luci.model.network:has_ipv6() then
+  ip6addr = section:taboption("general", Value, "ip6addr", translate("IPv6 address"))
+  ip6addr.datatype = "ip6addr"
+  
+  ip6prefixlen = section:taboption("general", Value, "ip6prefixlen", translate("IPv6 prefix length"))
+  ip6prefixlen.placeholder = "64"
+  ip6prefixlen.datatype = "max(128)"
+  
+  ip6gw = section:taboption("general", Value, "ip6gw", translate("IPv6 gateway"))
+  ip6gw.datatype = "ip6addr"
+end
 
 section:taboption("advanced", Flag, "forwarding", translate("Forwarding"), translate("Enable packet forwarding through n2n community."))
 
