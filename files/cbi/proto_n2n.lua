@@ -9,6 +9,16 @@ port = section:taboption("general", Value, "port", translate("Supernode port"))
 port.datatype = "port"
 port.rmempty = false
 
+section:taboption("general", Flag, "_slave", translate("Enable slave supernode"))
+
+server2 = section:taboption("general", Value, "server2", translate("Slave supernode server"))
+server2:depends("_slave", 1)
+server2.datatype = "host"
+
+port2 = section:taboption("general", Value, "port2", translate("Slave supernode port"))
+port2:depends("_slave", 1)
+port2.datatype = "port"
+
 community = section:taboption("general", Value, "community", translate("Community"))
 community.rmempty = false
 
