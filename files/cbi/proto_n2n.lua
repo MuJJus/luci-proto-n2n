@@ -1,6 +1,18 @@
 local map, section, net = ...
 local ifc = net:get_interface()
 
+local mac_gen = "var Macaddr=document.getElementById(this.parentNode.parentNode.parentNode.id.replace(\"cbi\", \"cbid\").replace(/-/g, \".\"));" ..
+"function randomString(len,type){len=len||32;type=type||0;" ..
+"var $chars=\"\";" ..
+"switch(type){case 1:$chars=\"13579bdf\";break;" ..
+"case 2:$chars=\"24680ace\";break;" ..
+"default:$chars=\"0123456789abcdef\";break;}" ..
+"var maxPos=$chars.length;var pwd=\"\";" ..
+"for(i = 0; i < len; i++){pwd+=$chars.charAt(Math.floor(Math.random() * maxPos));}return pwd;};" ..
+"Macaddr.value=randomString(1)+randomString(1,2)+\":\"+randomString(2)+\":\"+randomString(2)+\":\"+randomString(2)+\":\"+randomString(2)+\":\"+randomString(2)"
+
+local mac_btn = "&nbsp;<br><input type=\"button\" id=\"test1\" value=\" " .. translate("Generate Randomly") .. " \" onclick='" .. mac_gen .. "'/>"
+
 server = section:taboption("general", Value, "server", translate("Supernode server"))
 server.datatype = "host"
 server.rmempty = false
@@ -61,7 +73,7 @@ section:taboption("advanced", Flag, "dynamic", translate("Periodically resolve s
 
 section:taboption("advanced", Flag, "multicast", translate("Accept multicast"), translate("Accept multicast MAC addresses."))
 
-luci.tools.proto.opt_macaddr(section, ifc, translate("Override MAC address"))
+luci.tools.proto.opt_macaddr(section, ifc, translate("Override MAC address"), mac_btn)
 
 mtu = section:taboption("advanced", Value, "mtu", translate("Override MTU"))
 mtu.placeholder = "1400"
