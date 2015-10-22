@@ -76,7 +76,7 @@ section:taboption("advanced", Flag, "multicast", translate("Accept multicast"), 
 luci.tools.proto.opt_macaddr(section, ifc, translate("Override MAC address"), cfgbtn)
 
 mtu = section:taboption("advanced", Value, "mtu", translate("Override MTU"))
-mtu.placeholder = "1400"
+mtu.placeholder = "1440"
 mtu.datatype = "max(9200)"
 
 localport = section:taboption("advanced", Value, "localport", translate("Bind local port"))
